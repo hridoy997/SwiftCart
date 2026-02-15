@@ -1,4 +1,7 @@
-window.onload = loadCart;
+window.onload = () => {
+  loadCart();
+  updateCartCount();
+};
 
 function loadCart() {
 
@@ -10,18 +13,29 @@ function loadCart() {
 
   container.innerHTML = "";
 
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-12">
+        <p class="text-gray-500 text-lg">Your cart is empty</p>
+        <a href="products.html" class="btn btn-primary btn-sm mt-4">Continue Shopping</a>
+      </div>
+    `;
+    document.getElementById("totalPrice").innerText = "Total: $0.00";
+    return;
+  }
+
   cart.forEach((item, index) => {
 
     total += item.price;
 
     container.innerHTML += `
-      <div class="flex justify-between bg-base-100 p-4 rounded shadow">
+      <div class="flex justify-between items-center bg-base-100 p-4 rounded-xl shadow-sm border">
 
-        <div class="flex gap-4">
-          <img src="${item.image}" class="h-16"/>
+        <div class="flex gap-4 items-center">
+          <img src="${item.image}" class="h-16 object-contain"/>
           <div>
-            <h3 class="font-semibold">${item.title}</h3>
-            <p>$${item.price}</p>
+            <h3 class="font-semibold text-sm">${item.title}</h3>
+            <p class="font-bold text-primary">$${item.price}</p>
           </div>
         </div>
 
@@ -47,4 +61,17 @@ function removeItem(index) {
   localStorage.setItem("cart", JSON.stringify(cart));
 
   loadCart();
+  updateCartCount();
+}
+
+function clearCart() {
+  localStorage.removeItem("cart");
+  loadCart();
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const badge = document.querySelector(".indicator .badge");
+  if (badge) badge.innerText = cart.length;
 }
