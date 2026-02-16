@@ -4,11 +4,11 @@ SwiftCart হলো একটি মডার্ন ই-কমার্স ও�
 
 ## Live Link
 
-YOUR_DEPLOYED_URL_HERE
+https://hridoy997.github.io/SwiftCart/
 
 ## GitHub Repository
 
-YOUR_REPO_URL_HERE
+https://github.com/hridoy997/SwiftCart.git
 
 ## Technology Stack
 
