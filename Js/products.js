@@ -88,7 +88,7 @@ function renderProducts(products) {
           </div>
 
           <h3 class="text-sm font-semibold mb-2" title="${p.title}">
-            ${truncate(p.title, 45)}
+            ${truncate(p.title, 25)}
           </h3>
 
           <p class="font-bold mb-4">$${p.price}</p>
