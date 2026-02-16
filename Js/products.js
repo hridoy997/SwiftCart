@@ -16,18 +16,19 @@ async function loadCategories() {
   const container = document.getElementById("categoryContainer");
   container.innerHTML = "";
 
-  createCategoryBtn("All", () => loadProducts());
+  createCategoryBtn("All", () => loadProducts(), true);
 
   categories.forEach(cat => {
     createCategoryBtn(cat, () => loadProducts(cat));
   });
 }
 
-function createCategoryBtn(name, fn) {
+function createCategoryBtn(name, fn, isActive = false) {
 
   const btn = document.createElement("button");
 
   btn.className = "btn btn-sm btn-outline capitalize";
+  if (isActive) btn.classList.add("btn-primary");
   btn.innerText = name;
 
   btn.onclick = () => {
